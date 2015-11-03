@@ -29,14 +29,14 @@ public class LoginController {
 		return "test입니다.<a href=\"/login\"> 로그인 </a>" ;
 	}
 
-	
-
 	@RequestMapping("/admin")
-	public String adminPage() {
+	public void adminPage() {
 		logger.info("***************** adminPage ");
-		
-		
-		return "admin";
+	}
+
+	@RequestMapping("/user")
+	public void userPage() {
+		logger.info("***************** userPage ");
 	}
 	
 	
@@ -50,12 +50,10 @@ public class LoginController {
 		logger.info("***************** logout ");		
 	}
 	
-	
 	@RequestMapping("/403")
 	public void accessDeniedPage() {
 		logger.info("***************** 403페이지 ");		
 	}
-	
 	
 	
 /*	
