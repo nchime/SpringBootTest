@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 @Configuration
@@ -16,21 +18,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	public static final String REMEMBER_ME_KEY = "chimeKey";
 
-	@Autowired 
+/*	@Autowired 
 	DataSource dataSource; 
-	
-/*	@Autowired
-	UserDetailsService userDetailsService;
 */	
 	@Autowired
+	UserDetailsService userDetailsService;
+
+	
+/*	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-/*		auth.inMemoryAuthentication()
-			.withUser("user").password("1234").roles("USER").and()
-			.withUser("admin").password("1234").roles("USER", "ADMIN");
-*/
+//		auth.inMemoryAuthentication()
+//			.withUser("user").password("1234").roles("USER").and()
+//			.withUser("admin").password("1234").roles("USER", "ADMIN");
+
 		auth.jdbcAuthentication().dataSource(dataSource); 
 	}
+*/
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.userDetailsService(userDetailsService);
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -75,6 +86,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return tokenBasedRememberMeServices;
 	}
 */	
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 
 }

@@ -18,14 +18,18 @@
 <div class="container">
   <h2> admin page  </h2>
   <h3><sec:authentication property="principal.username"/>님 안녕하세요 !</h3>
+  <h3><sec:authentication property="principal.nick"/>님 안녕하세요 !!!!!</h3>
+  <h3>가입일시 : <sec:authentication property="principal.regitime"/></h3>
+  <h3><sec:authentication property="principal.dept"/>에 소속중입니다</h3>  
+  
   <h3>
-   	<sec:authorize access="isAnonymous()"> 	로그아웃 중입니다. </sec:authorize>
-	<sec:authorize access="isAuthenticated()"> 	로그인 중입니다. </sec:authorize>
+   	<sec:authorize access="isAnonymous()"> 	로그아웃 상태입니다. </sec:authorize>
+	<sec:authorize access="isAuthenticated()"> 	로그인 상태입니다.  </sec:authorize>
   </h3>
       
   <form role="form" action="/logout" method="post">
    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <button type="submit" class="btn btn-default">Log out</button>
+    <button type="submit" class="btn btn-default">가입하기</button>
   </form>
 </div>
 

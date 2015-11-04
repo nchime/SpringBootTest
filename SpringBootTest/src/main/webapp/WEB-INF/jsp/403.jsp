@@ -16,7 +16,8 @@
 <body>
 
 <div class="container">
-  <h2> 접근이 제한되었습니다.  </h2>
+  <h2> 접근이 제한되었습니다. </h2>
+   <a href="/">home</a>
 </div>
 
 </body>

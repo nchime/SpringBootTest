@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +37,8 @@
       </c:if> 
  
    </h2>
+   
+   <a href="/registform">신규 가입</a>
    
   <form role="form" action="${loginUrl}" method="post">
     <div class="form-group">
