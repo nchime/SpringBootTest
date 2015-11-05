@@ -48,6 +48,9 @@ public class SpringBootTestApplication {
         return characterEncodingFilter;
     }
     
+    
+    
+    // 초기 데이터 입력 처리 
     @Autowired
     AccountRepository accountRepository;
     

@@ -29,7 +29,7 @@
       
   <form role="form" action="/logout" method="post">
    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <button type="submit" class="btn btn-default">가입하기</button>
+    <button type="submit" class="btn btn-default">로그아웃</button>
   </form>
 </div>
 

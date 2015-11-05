@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,10 +62,28 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping("/login")
-	public void login() {
-		logger.info("***************** login ");		
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView getLoginPage(@RequestParam Optional<String> error) {
+		 logger.info("***************** login ");
+		 logger.info("Getting login page, error={}", error);
+		 return new ModelAndView("login", "error", error);		
 	}
+	
+	
+	
+	
+	@RequestMapping("/test2/{test}")
+	public String test2(@PathVariable("test") String test) {
+		
+		logger.info(test);
+		
+		return "redirect:/";
+		
+	}
+	
+	
+	
+	
 	
 	@RequestMapping("/logout")
 	public void logout() {
@@ -122,9 +143,6 @@ public class LoginController {
 
 	
 	
-	
-	
-	
 /*	
     @RequestMapping("/user_list.html")
     public ModelAndView getListUsersView() {
@@ -133,5 +151,14 @@ public class LoginController {
         return new ModelAndView("user_list", model);
     }*/
 	
+	@RequestMapping(value = "/test", method=RequestMethod.GET)
+	public String test(@RequestParam String param1, @RequestParam String param2) {
+		
+		logger.info(param1);
+		logger.info(param2);		
+		
+		return "redirect:/";
+		
+	}
 
 }

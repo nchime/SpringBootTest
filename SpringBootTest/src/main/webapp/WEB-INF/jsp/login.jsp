@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,11 +33,27 @@
  	<c:if test="${param.error != null}">
  			<br/>Invalid username and password. (${param.error})
  	</c:if>
+ 	
+ 	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+      <font color="red">
+        Your login attempt was not successful due to <br/><br/>
+        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+      </font>
+	</c:if>
+	
+ 	
       <c:if test="${param.logout != null}">
       		<br/>You have been logged out.
-      </c:if> 
+      </c:if>
+      
+      
+      
+      
+   	<sec:authorize access="isAnonymous()"> 	로그아웃 상태입니다. </sec:authorize>
+	<sec:authorize access="isAuthenticated()"> 	로그인 상태입니다.  </sec:authorize>
  
    </h2>
+  
    
    <a href="/registform">신규 가입</a>
    
